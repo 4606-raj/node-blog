@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const helpers = require('../helpers/helpers');
+const { successResponse, errorResponse } = require('../helpers/helpers');
 
 module.exports.login = async (req, res) => {
     var user = await User.find({email: req.body.email}).countDocuments();
@@ -17,7 +17,7 @@ module.exports.login = async (req, res) => {
             var userVerified = await bcrypt.compare(req.body.password, response.password);
             if(!userVerified) {
                 // res.status(401).send({message: 'invalid password'})
-                helpers.errorResponse(res, 'invalid password', 401);
+                errorResponse(res, 'invalid password', 401);
                 return;
             }
 
@@ -29,7 +29,7 @@ module.exports.login = async (req, res) => {
                     token: token
                 }
 
-            helpers.successResponse(res, user);
+            successResponse(res, user);
         })
         .catch(err => {
             console.log(err)
@@ -47,12 +47,12 @@ module.exports.register = async (req, res) => {
 
         await User.create(data)
         // res.status(201).send({'message': 'request recieved successfully'})
-        helpers.successResponse(res, {}, 'request recieved successfully');
+        successResponse(res, {}, 'request recieved successfully');
     }
     catch(err) {
         console.log(err)
         // res.status(500).send(err)
-        helpers.errorResponse(res, err, 500);
+        errorResponse(res, err, 500);
     }
     
 }
