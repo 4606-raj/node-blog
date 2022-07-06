@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/Blog')
+mongoose.connect(process.env.DB_URL)
         .then(result => {
             console.log('connected to DB');
 
