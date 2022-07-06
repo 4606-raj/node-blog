@@ -8,7 +8,7 @@ module.exports.login = async (req, res) => {
 
     if(!user) {
         // res.status(401).send({message: 'invalid email'})
-        helpers.errorResponse(res, 'invalid email', 401);
+        errorResponse(res, 'invalid email', 401);
         return;
     }
     
