@@ -20,3 +20,8 @@ module.exports.show = (req, res) => {
             helpers.errorResponse(res, err, 404);
         })
 }
+
+module.exports.store = async (req, res) => {
+    await Blog.create(req.body);
+    helpers.successResponse(res, {}, 'blog created successfully');
+}
