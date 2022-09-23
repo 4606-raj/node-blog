@@ -11,6 +11,7 @@ const routes = (app) => {
     app.post('/api/login', loginRequest, validateRequest, userController.login);
     app.get('/api/blogs', auth, blogController.index);
     app.post('/api/blogs', auth, blogRequest, validateRequest, blogController.store);
+    app.put('/api/blogs', auth, blogRequest, validateRequest, blogController.update);
     app.get('/api/blogs/:id', blogController.show);
 }
 

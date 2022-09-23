@@ -24,4 +24,15 @@ module.exports.show = (req, res) => {
 module.exports.store = async (req, res) => {
     await Blog.create(req.body);
     helpers.successResponse(res, {}, 'blog created successfully');
+
+}
+module.exports.update = async (req, res) => {
+    data = req.body;
+    await Blog.updateOne({_id: data.id}, {
+        $set: {
+            title: data.title,
+            snippet: data.snippet,
+        }
+    });
+    helpers.successResponse(res, {}, 'blog updated successfully');
 }
