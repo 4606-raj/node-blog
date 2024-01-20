@@ -11,9 +11,9 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(process.env.DB_URL)
-        .then(result => {
-            console.log('connected to DB');
+// mongoose.connect(process.env.DB_URL)
+//         .then(result => {
+//             console.log('connected to DB');
 
             app.listen(PORT, (err) => {
                 if(err)
@@ -22,9 +22,9 @@ mongoose.connect(process.env.DB_URL)
                 console.log(`Server is listening on port ${PORT}`);
             })
             
-        })
-        .catch(err => {
-            console.log(err);
-        });
+//         })
+//         .catch(err => {
+//             console.log(err);
+//         });
 
 require('./routes')(app);
